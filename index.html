@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOO Ying Hua, David</title>
+    <style>
+        body {
+            font-family: serif;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 20px;
+        }
+        .container {
+            display: flex;
+            gap: 40px;
+        }
+        .left-column {
+            flex: 0.5;
+            text-align: center;
+        }
+        .right-column {
+            flex: 1;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .photo-container {
+            margin: 20px 0;
+        }
+        .photo-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+        .photo-container figcaption {
+            white-space: pre-line;
+            margin-top: 2px;
+            font-size: 10px;
+        }
+        .photo-refresh {
+            font-size: 10px;
+            color: grey;
+        }
+        .intro {
+            margin: 20px 0;
+            text-align: left;
+        }
+        details {
+            text-align: left;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        details[open] {
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <h1>CHOO Ying Hua, David</h1>
+            <p>&#12306;: <i>chooyh [dot] david [at] u [dot] nus [dot] edu</i></p>
+            <p><a href="cv.pdf">[CV]</a></p>
+
+            <figure class="photo-container">
+                <img id="dynamic-photo" src="" alt="Dynamic photo">
+                <figcaption id="photo-caption">Loading...</figcaption>
+                <div class="photo-refresh"><i>[Refresh for a new photo]</i></div>
+            </figure>
+        </div>
+        
+        <div class="right-column">
+            <p class="intro">I am a M.A. student in the Department of Philosophy at the National University of Singapore, where I also did my B.A. in Philosophy, Politics, and Economics from 2022-26. My B.A. thesis outlines my case against proposal that uses fragmentation and metalinguistic ignorance to address the problem of logical omniscience in Bayesian decision theory. My philosophical interests include epistemology, decision theory, logic, philosophy of mathematics, and philosophy of language.<br><br>
+                
+            In my free time I try figuring out how to best use my camera. And if I get bored of that, I start thinking about how long it will take for Manchester United to win five games in a row.
+            </p>
+            
+            <details>
+                <summary>In Progress</summary>
+                <p>Check in some other time.</p>
+            </details>
+
+            <details>
+                <summary>Misc</summary>
+                <p><b>Fragmentation Does Not Solve Logical Omniscience [B.A. Thesis]</b></p>
+                <p>Argues that the proposal by Elga and Rayo (2022) in <i>Fragmentation and Logical Omniscience</i> fails as a solution to the problem of logical omniscience in Bayesian decision theory. Fragmentation leaves too much underdetermined to give any verdicts on rationality, while the metalinguistic strategy misidentifies the source of agents' failures in cases like logical puzzles and mathematical computation.</p>
+            </details>
+
+            <p><i>Last updated April 2026.</i></p>
+        </div>
+    </div>
+    <script>
+        const photos = [
+            { url: 'chikubujima-5.jpg', caption: 'Chikubushima, Lake Biwa. They waved after getting their photo taken! December 2025.' },
+            { url: 'kiyomizudera.jpg', caption: 'Kiyomizu-dera. April 2025.' },
+            { url: 'onumakoen-8.jpg', caption: 'Onuma-koen, Hokkaido. Had to tiptoe on a rock. July 2025.'},
+            { url: 'miyajima-5.jpg', caption: 'Itsukushima-jinja, Hiroshima. January 2026.'},
+            { url: 'ajisai-kamakura.jpg', caption: 'Hydrangeas at Hase-dera in Kamakura. June 2025.' },
+            { url: 'ajisai-nara.jpg', caption: 'Hydrangeas at Hannya-ji in Nara. June 2025.'},
+            { url: 'aoi_matsuri-7.jpg', caption: 'Aoi Matsuri. May 2025.'},
+            { url: 'biei-3.jpg', caption: 'Sunflowers in Biei, Hokkaido. Sunlight optional. July 2025.'},
+            { url: 'expo.jpg', caption: 'Osaka Kansai Expo. August 2025.'},
+            { url: 'gunkanjima.jpg', caption: 'Gunkamjima, Nagasaki. May 2025.'},
+            { url: 'kamogawa-delta.jpg', caption: 'Kamogawa Delta. July 2025.'},
+            { url: 'kobe.jpg', caption: 'A hot day at Ikuta-jinja in Kobe. August 2025.'},
+            { url: 'kobe-gyoza.jpg', caption: 'Nankin-machi in Kobe. August 2025.'},
+            { url: 'nijo-sakura.jpg', caption: 'Completely clueless phototaking. Nijo Castle. March 2025.'},
+            { url: 'quanzhou.jpg', caption: 'Extremely lucky. Guandi Temple, Quanzhou. December 2025.'},
+            { url: 'sensoji.jpg', caption: 'Not Fushimi Inari, but Sensoji in Tokyo. May 2025.'},
+        ];
+        
+        const lastPhotoIndex = localStorage.getItem('lastPhotoIndex');
+        let randomIndex = Math.floor(Math.random() * photos.length);
+        
+        // Ensure we don't pick the same photo twice
+        if (lastPhotoIndex !== null && randomIndex === parseInt(lastPhotoIndex)) {
+            randomIndex = (randomIndex + 1) % photos.length;
+        }
+        
+        const randomPhoto = photos[randomIndex];
+        document.getElementById('dynamic-photo').src = randomPhoto.url;
+        document.getElementById('photo-caption').textContent = randomPhoto.caption;
+        document.getElementById('photo-caption').style.color = "grey";
+        
+        // Store the index for next time
+        localStorage.setItem('lastPhotoIndex', randomIndex);
+    </script>
+</body>
+</html>
