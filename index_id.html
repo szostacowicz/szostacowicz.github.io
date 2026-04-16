@@ -3,11 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&family=Noto+Serif+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
     <title>David CHOO (id)</title>
+    <script>
+        const photos = [
+            { url: 'chikubujima-5.jpg', caption: 'Chikubushima, Danau Biwa. Mereka melambai setelah difoto! Desember 2025.' },
+            { url: 'kiyomizudera.jpg', caption: 'Kiyomizu-dera. April 2025.' },
+            { url: 'onumakoen-8.jpg', caption: 'Onuma-koen, Hokkaido. Harus berjinjit di atas batu. Juli 2025.'},
+            { url: 'miyajima-5.jpg', caption: 'Itsukushima-jinja, Hiroshima. Januari 2026.'},
+            { url: 'ajisai-kamakura.jpg', caption: 'Bunga hortensia di Hase-dera, Kamakura. Juni 2025.' },
+            { url: 'ajisai-nara.jpg', caption: 'Bunga hortensia di Hannya-ji, Nara. Juni 2025.'},
+            { url: 'aoi_matsuri-7.jpg', caption: 'Aoi Matsuri. Mei 2025.'},
+            { url: 'biei-3.jpg', caption: 'Bunga matahari di Biei, Hokkaido. Sinar matahari opsional. Juli 2025.'},
+            { url: 'expo.jpg', caption: 'Expo Osaka Kansai. Agustus 2025.'},
+            { url: 'gunkanjima.jpg', caption: 'Gunkanjima, Nagasaki. Mei 2025.'},
+            { url: 'kamogawa-delta.jpg', caption: 'Delta Kamogawa. Juli 2025.'},
+            { url: 'kobe.jpg', caption: 'Hari yang panas di Ikuta-jinja, Kobe. Agustus 2025.'},
+            { url: 'kobe-gyoza.jpg', caption: 'Nankin-machi di Kobe. Agustus 2025.'},
+            { url: 'nijo-sakura.jpg', caption: 'Foto yang sama sekali tidak tahu cara mengambil. Istana Nijo. Maret 2025.'},
+            { url: 'quanzhou.jpg', caption: 'Sangat beruntung. Kuil Guandi, Quanzhou. Desember 2025.'},
+            { url: 'sensoji.jpg', caption: 'Sensoji di Tokyo, bukan Fushimi Inari. Mei 2025.'},
+        ];
+
+        // Pick the pre-selected photo from last visit, or pick randomly
+        const stored = localStorage.getItem('nextPhoto');
+        const photoData = stored ? JSON.parse(stored) : photos[Math.floor(Math.random() * photos.length)];
+        window._photoData = photoData;
+
+        // Preload it immediately, as early as possible
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.as = 'image';
+        preloadLink.href = photoData.url;
+        document.head.appendChild(preloadLink);
+
+        // Pre-select and store the *next* visit's photo now
+        const nextIndex = Math.floor(Math.random() * photos.length);
+        localStorage.setItem('nextPhoto', JSON.stringify(photos[nextIndex]));
+    </script>
     <style>
         body {
-            font-family: serif, "Noto Serif TC", "Noto Serif JP";
+            font-family: serif, "Noto Serif TC";
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
@@ -127,58 +163,12 @@
             window.location.href = pick;
         }
 
-        const photos = [
-            { url: 'chikubujima-5.jpg', caption: 'Chikubushima, Danau Biwa. Mereka melambai setelah difoto! Desember 2025.' },
-            { url: 'kiyomizudera.jpg', caption: 'Kiyomizu-dera. April 2025.' },
-            { url: 'onumakoen-8.jpg', caption: 'Onuma-koen, Hokkaido. Harus berjinjit di atas batu. Juli 2025.'},
-            { url: 'miyajima-5.jpg', caption: 'Itsukushima-jinja, Hiroshima. Januari 2026.'},
-            { url: 'ajisai-kamakura.jpg', caption: 'Bunga hortensia di Hase-dera, Kamakura. Juni 2025.' },
-            { url: 'ajisai-nara.jpg', caption: 'Bunga hortensia di Hannya-ji, Nara. Juni 2025.'},
-            { url: 'aoi_matsuri-7.jpg', caption: 'Aoi Matsuri. Mei 2025.'},
-            { url: 'biei-3.jpg', caption: 'Bunga matahari di Biei, Hokkaido. Sinar matahari opsional. Juli 2025.'},
-            { url: 'expo.jpg', caption: 'Expo Osaka Kansai. Agustus 2025.'},
-            { url: 'gunkanjima.jpg', caption: 'Gunkanjima, Nagasaki. Mei 2025.'},
-            { url: 'kamogawa-delta.jpg', caption: 'Delta Kamogawa. Juli 2025.'},
-            { url: 'kobe.jpg', caption: 'Hari yang panas di Ikuta-jinja, Kobe. Agustus 2025.'},
-            { url: 'kobe-gyoza.jpg', caption: 'Nankin-machi di Kobe. Agustus 2025.'},
-            { url: 'nijo-sakura.jpg', caption: 'Foto yang sama sekali tidak tahu cara mengambil. Istana Nijo. Maret 2025.'},
-            { url: 'quanzhou.jpg', caption: 'Sangat beruntung. Kuil Guandi, Quanzhou. Desember 2025.'},
-            { url: 'sensoji.jpg', caption: 'Sensoji di Tokyo, bukan Fushimi Inari. Mei 2025.'},
-        ];
-        
-        function loadPhoto(photoData) {
-            const img = document.getElementById('dynamic-photo');
-            const caption = document.getElementById('photo-caption');
-            
-            img.style.opacity = '0.6';
-            caption.textContent = 'Memuat...';
-            
-            const preloadImg = new Image();
-            preloadImg.onload = () => {
-                img.src = photoData.url;
-                caption.textContent = photoData.caption;
-                img.style.opacity = '1';
-            };
-            preloadImg.onerror = () => {
-                img.src = photoData.url;
-                caption.textContent = photoData.caption;
-                img.style.opacity = '1';
-            };
-            preloadImg.src = photoData.url;
-        }
-        
-        const lastPhotoIndex = localStorage.getItem('lastPhotoIndex');
-        let randomIndex = Math.floor(Math.random() * photos.length);
-        
-        if (lastPhotoIndex !== null && randomIndex === parseInt(lastPhotoIndex)) {
-            randomIndex = (randomIndex + 1) % photos.length;
-        }
-        
-        const randomPhoto = photos[randomIndex];
-        loadPhoto(randomPhoto);
-        document.getElementById('photo-caption').style.color = "grey";
-        
-        localStorage.setItem('lastPhotoIndex', randomIndex);
+        // Image is already preloaded, just set src directly
+        const img = document.getElementById('dynamic-photo');
+        const caption = document.getElementById('photo-caption');
+        img.src = window._photoData.url;
+        caption.textContent = window._photoData.caption;
+        caption.style.color = 'grey';
     </script>
 </body>
 </html>

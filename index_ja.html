@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&family=Noto+Serif+JP&display=swap" rel="stylesheet">
     <title>David CHOO (ja)</title>
+    <script>
+        const photos = [
+            { url: 'chikubujima-5.jpg', caption: '竹生島、琵琶湖。写真を撮ったら手を振ってくれた！2025年12月。' },
+            { url: 'kiyomizudera.jpg', caption: '清水寺。2025年4月。' },
+            { url: 'onumakoen-8.jpg', caption: '大沼公園、北海道。岩の上でつま先立ちしなければならなかった。2025年7月。'},
+            { url: 'miyajima-5.jpg', caption: '厳島神社、広島。2026年1月。'},
+            { url: 'ajisai-kamakura.jpg', caption: '鎌倉・長谷寺のあじさい。2025年6月。' },
+            { url: 'ajisai-nara.jpg', caption: '奈良・般若寺のあじさい。2025年6月。'},
+            { url: 'aoi_matsuri-7.jpg', caption: '葵祭。2025年5月。'},
+            { url: 'biei-3.jpg', caption: '美瑛のひまわり、北海道。日光はなくてもいい。2025年7月。'},
+            { url: 'expo.jpg', caption: '大阪・関西万博。2025年8月。'},
+            { url: 'gunkanjima.jpg', caption: '軍艦島、長崎。2025年5月。'},
+            { url: 'kamogawa-delta.jpg', caption: '鴨川デルタ。2025年7月。'},
+            { url: 'kobe.jpg', caption: '神戸・生田神社で暑い一日。2025年8月。'},
+            { url: 'kobe-gyoza.jpg', caption: '神戸・南京町。2025年8月。'},
+            { url: 'nijo-sakura.jpg', caption: '完全に手探りの写真撮影。二条城。2025年3月。'},
+            { url: 'quanzhou.jpg', caption: '本当に運が良かった。関帝廟、泉州。2025年12月。'},
+            { url: 'sensoji.jpg', caption: '浅草寺、伏見稲荷ではありません。2025年5月。'},
+        ];
+
+        // Pick the pre-selected photo from last visit, or pick randomly
+        const stored = localStorage.getItem('nextPhoto');
+        const photoData = stored ? JSON.parse(stored) : photos[Math.floor(Math.random() * photos.length)];
+        window._photoData = photoData;
+
+        // Preload it immediately, as early as possible
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.as = 'image';
+        preloadLink.href = photoData.url;
+        document.head.appendChild(preloadLink);
+
+        // Pre-select and store the *next* visit's photo now
+        const nextIndex = Math.floor(Math.random() * photos.length);
+        localStorage.setItem('nextPhoto', JSON.stringify(photos[nextIndex]));
+    </script>
     <style>
         body {
             font-family: "Noto Serif JP", "Noto Serif TC", serif;
@@ -120,63 +156,12 @@
         </div>
     </div>
     <script>
-        const photos = [
-            { url: 'chikubujima-5.jpg', caption: '竹生島、琵琶湖。写真を撮ったら手を振ってくれた！2025年12月。' },
-            { url: 'kiyomizudera.jpg', caption: '清水寺。2025年4月。' },
-            { url: 'onumakoen-8.jpg', caption: '大沼公園、北海道。岩の上でつま先立ちしなければならなかった。2025年7月。'},
-            { url: 'miyajima-5.jpg', caption: '厳島神社、広島。2026年1月。'},
-            { url: 'ajisai-kamakura.jpg', caption: '鎌倉・長谷寺のあじさい。2025年6月。' },
-            { url: 'ajisai-nara.jpg', caption: '奈良・般若寺のあじさい。2025年6月。'},
-            { url: 'aoi_matsuri-7.jpg', caption: '葵祭。2025年5月。'},
-            { url: 'biei-3.jpg', caption: '美瑛のひまわり、北海道。日光はなくてもいい。2025年7月。'},
-            { url: 'expo.jpg', caption: '大阪・関西万博。2025年8月。'},
-            { url: 'gunkanjima.jpg', caption: '軍艦島、長崎。2025年5月。'},
-            { url: 'kamogawa-delta.jpg', caption: '鴨川デルタ。2025年7月。'},
-            { url: 'kobe.jpg', caption: '神戸・生田神社で暑い一日。2025年8月。'},
-            { url: 'kobe-gyoza.jpg', caption: '神戸・南京町。2025年8月。'},
-            { url: 'nijo-sakura.jpg', caption: '完全に手探りの写真撮影。二条城。2025年3月。'},
-            { url: 'quanzhou.jpg', caption: '本当に運が良かった。関帝廟、泉州。2025年12月。'},
-            { url: 'sensoji.jpg', caption: '浅草寺、伏見稲荷ではありません。2025年5月。'},
-        ];
-        
-        // Preload the image for better performance
-        function loadPhoto(photoData) {
-            const img = document.getElementById('dynamic-photo');
-            const caption = document.getElementById('photo-caption');
-            
-            // Add loading class for visual feedback
-            img.style.opacity = '0.6';
-            caption.textContent = '読み込み中...';
-            
-            // Create a new Image object to preload
-            const preloadImg = new Image();
-            preloadImg.onload = () => {
-                img.src = photoData.url;
-                caption.textContent = photoData.caption;
-                img.style.opacity = '1';
-            };
-            preloadImg.onerror = () => {
-                img.src = photoData.url; // Fallback: set src anyway
-                caption.textContent = photoData.caption;
-                img.style.opacity = '1';
-            };
-            preloadImg.src = photoData.url;
-        }
-        
-        const lastPhotoIndex = localStorage.getItem('lastPhotoIndex');
-        let randomIndex = Math.floor(Math.random() * photos.length);
-        
-        // Ensure we don't pick the same photo twice
-        if (lastPhotoIndex !== null && randomIndex === parseInt(lastPhotoIndex)) {
-            randomIndex = (randomIndex + 1) % photos.length;
-        }
-        
-        const randomPhoto = photos[randomIndex];
-        loadPhoto(randomPhoto);
-        document.getElementById('photo-caption').style.color = "grey";
-        
-        // Store the index for next time
-        localStorage.setItem('lastPhotoIndex', randomIndex);
+        // Image is already preloaded, just set src directly
+        const img = document.getElementById('dynamic-photo');
+        const caption = document.getElementById('photo-caption');
+        img.src = window._photoData.url;
+        caption.textContent = window._photoData.caption;
+        caption.style.color = 'grey';
     </script>
 </body>
 </html>
