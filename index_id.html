@@ -23,7 +23,7 @@
         ];
 
         // Pick the pre-selected photo from last visit, or pick randomly
-        const stored = localStorage.getItem('nextPhoto');
+        const stored = localStorage.getItem('nextPhoto_id');
         const photoData = stored ? JSON.parse(stored) : photos[Math.floor(Math.random() * photos.length)];
         window._photoData = photoData;
 
@@ -36,7 +36,7 @@
 
         // Pre-select and store the *next* visit's photo now
         const nextIndex = Math.floor(Math.random() * photos.length);
-        localStorage.setItem('nextPhoto', JSON.stringify(photos[nextIndex]));
+        localStorage.setItem('nextPhoto_id', JSON.stringify(photos[nextIndex]));
     </script>
     <style>
         body {
