@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&family=Noto+Serif+JP&display=swap" rel="stylesheet">
-    <title>David CHOO</title>
+    <title>David CHOO (ja)</title>
     <style>
         body {
-            font-family: serif, "Noto Serif TC", "Noto Serif JP";
+            font-family: "Noto Serif JP", "Noto Serif TC", serif;
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
@@ -87,63 +87,56 @@
     <div class="container">
         <div class="left-column">
             <h1>CHOO Ying Hua David</h1>
-            <p style="font-size: 12pt">CHOO Ying Hua 朱盈華 is my given name in Chinese.</p>
+            <p style="font-size: 12pt">朱 盈華 （しゅ えいふあ）は私の中国語名です。</p>
             <p>&#12306;: <i>chooyh [dot] david [at] u [dot] nus [dot] edu</i></p>
 
             <figure class="photo-container">
-                <img id="dynamic-photo" src="" alt="Dynamic photo" loading="lazy">
-                <figcaption id="photo-caption">Loading...</figcaption>
-                <div class="photo-refresh"><i>[Refresh for a new photo]</i></div>
+                <img id="dynamic-photo" src="" alt="写真" loading="lazy">
+                <figcaption id="photo-caption">読み込み中...</figcaption>
+                <div class="photo-refresh"><i>［更新すると別の写真が表示されます］</i></div>
             </figure>
         </div>
         
         <div class="right-column">
-            <p class="intro">I am a M.A. student in the Department of Philosophy at the National University of Singapore, where I also did my B.A. in Philosophy, Politics, and Economics from 2022-26. My philosophical interests include epistemology, decision theory, logic, philosophy of mathematics, and philosophy of language.<br><br>
-            
-            Here is my <a href="cv.pdf">CV</a>.<br><br>
+            <p class="intro">私はシンガポール国立大学哲学科の修士課程に在籍しており、同大学で2022年から2026年にかけて哲学・政治・経済学の学士号を取得しました。哲学的な関心は、認識論、決定理論、論理学、数学の哲学、および言語哲学にあります。<br><br>
 
-            Outside of philosophy, I spend some of my free time learning how to use a camera, or <a href="#" onclick="randomLang(event)">brushing up</a> on my foreign languages.
+            CVは<a href="cv.pdf">こちら</a>。<br><br>
+
+            哲学以外では、空き時間にカメラの使い方を学んだり、外国語に磨きをかけたりしています（ちなみにこれがその外国語です）。<a href="index.html">英語版はこちら。</a>
             </p>
             
             <details>
-                <summary>In Progress</summary>
-                <p>Check in some other time.</p>
+                <summary>進行中</summary>
+                <p>またいつか見てください。</p>
             </details>
 
             <details>
-                <summary>Misc</summary>
-                <p><b>Fragmentation Does Not Solve Logical Omniscience (B.A. Thesis)</b></p>
-                <p>Argues that the proposal by Elga and Rayo (2022) in <i>Fragmentation and Logical Omniscience</i> fails as a solution to the problem of logical omniscience in Bayesian decision theory. Fragmentation leaves too much underdetermined to give any verdicts on rationality, while the metalinguistic strategy misidentifies the source of agents' failures in cases like logical puzzles and mathematical computation.</p>
+                <summary>その他</summary>
+                <p><b>断片化は論理的全知を解決しない（学士論文）</b></p>
+                <p>ElgaとRayo（2022）の論文 <i>Fragmentation and Logical Omniscience</i> における提案が、ベイズ決定理論における論理的全知の問題に対する解決策として失敗していることを論じる。断片化は合理性についていかなる判断も下せないほど多くを未決定のままにし、一方でメタ言語的戦略は、論理パズルや数学的計算のような事例において、エージェントの失敗の原因を誤って特定している。</p>
             </details>
 
-            <p><i>Last updated April 2026.</i></p>
+            <p><i>最終更新：2026年4月。なお、このページはClaudeによる機械翻訳です。日本語はまだ勉強中なので、おかしなところがあってもご容赦ください！</i></p>
         </div>
     </div>
     <script>
-        function randomLang(e) {
-            e.preventDefault();
-            const pages = ['index_ja.html', 'index_id.html'];
-            const pick = pages[Math.floor(Math.random() * pages.length)];
-            window.location.href = pick;
-        }
-
         const photos = [
-            { url: 'chikubujima-5.jpg', caption: 'Chikubushima, Lake Biwa. They waved after getting their photo taken! December 2025.' },
-            { url: 'kiyomizudera.jpg', caption: 'Kiyomizu-dera. April 2025.' },
-            { url: 'onumakoen-8.jpg', caption: 'Onuma-koen, Hokkaido. Had to tiptoe on a rock. July 2025.'},
-            { url: 'miyajima-5.jpg', caption: 'Itsukushima-jinja, Hiroshima. January 2026.'},
-            { url: 'ajisai-kamakura.jpg', caption: 'Hydrangeas at Hase-dera in Kamakura. June 2025.' },
-            { url: 'ajisai-nara.jpg', caption: 'Hydrangeas at Hannya-ji in Nara. June 2025.'},
-            { url: 'aoi_matsuri-7.jpg', caption: 'Aoi Matsuri. May 2025.'},
-            { url: 'biei-3.jpg', caption: 'Sunflowers in Biei, Hokkaido. Sunlight optional. July 2025.'},
-            { url: 'expo.jpg', caption: 'Osaka Kansai Expo. August 2025.'},
-            { url: 'gunkanjima.jpg', caption: 'Gunkamjima, Nagasaki. May 2025.'},
-            { url: 'kamogawa-delta.jpg', caption: 'Kamogawa Delta. July 2025.'},
-            { url: 'kobe.jpg', caption: 'A hot day at Ikuta-jinja in Kobe. August 2025.'},
-            { url: 'kobe-gyoza.jpg', caption: 'Nankin-machi in Kobe. August 2025.'},
-            { url: 'nijo-sakura.jpg', caption: 'Completely clueless phototaking. Nijo Castle. March 2025.'},
-            { url: 'quanzhou.jpg', caption: 'Extremely lucky. Guandi Temple, Quanzhou. December 2025.'},
-            { url: 'sensoji.jpg', caption: 'Sensoji in Tokyo, not Fushimi Inari. May 2025.'},
+            { url: 'chikubujima-5.jpg', caption: '竹生島、琵琶湖。写真を撮ったら手を振ってくれた！2025年12月。' },
+            { url: 'kiyomizudera.jpg', caption: '清水寺。2025年4月。' },
+            { url: 'onumakoen-8.jpg', caption: '大沼公園、北海道。岩の上でつま先立ちしなければならなかった。2025年7月。'},
+            { url: 'miyajima-5.jpg', caption: '厳島神社、広島。2026年1月。'},
+            { url: 'ajisai-kamakura.jpg', caption: '鎌倉・長谷寺のあじさい。2025年6月。' },
+            { url: 'ajisai-nara.jpg', caption: '奈良・般若寺のあじさい。2025年6月。'},
+            { url: 'aoi_matsuri-7.jpg', caption: '葵祭。2025年5月。'},
+            { url: 'biei-3.jpg', caption: '美瑛のひまわり、北海道。日光はなくてもいい。2025年7月。'},
+            { url: 'expo.jpg', caption: '大阪・関西万博。2025年8月。'},
+            { url: 'gunkanjima.jpg', caption: '軍艦島、長崎。2025年5月。'},
+            { url: 'kamogawa-delta.jpg', caption: '鴨川デルタ。2025年7月。'},
+            { url: 'kobe.jpg', caption: '神戸・生田神社で暑い一日。2025年8月。'},
+            { url: 'kobe-gyoza.jpg', caption: '神戸・南京町。2025年8月。'},
+            { url: 'nijo-sakura.jpg', caption: '完全に手探りの写真撮影。二条城。2025年3月。'},
+            { url: 'quanzhou.jpg', caption: '本当に運が良かった。関帝廟、泉州。2025年12月。'},
+            { url: 'sensoji.jpg', caption: '浅草寺、伏見稲荷ではありません。2025年5月。'},
         ];
         
         // Preload the image for better performance
@@ -153,7 +146,7 @@
             
             // Add loading class for visual feedback
             img.style.opacity = '0.6';
-            caption.textContent = 'Loading...';
+            caption.textContent = '読み込み中...';
             
             // Create a new Image object to preload
             const preloadImg = new Image();
