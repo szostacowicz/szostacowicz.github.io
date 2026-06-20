@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
     <title>David CHOO</title>
+    <!--
+    { url: 'sensoji.jpg', caption: 'Sensoji in Tokyo, not Fushimi Inari. May 2025.'},
+    { url: 'nijo-sakura.jpg', caption: 'Completely clueless phototaking. Nijo Castle. March 2025.'},
+    -->
     <script>
         const photos = [
-            { url: 'chikubujima-5.jpg', caption: 'Chikubushima, Lake Biwa. They waved after getting their photo taken! December 2025.' },
-            { url: 'kiyomizudera.jpg', caption: 'Kiyomizu-dera. April 2025.' },
+            { url: 'chikubujima-5.jpg', caption: 'Friendly rowers near Chikubushima, Biwa-ko. December 2025.' },
+            { url: 'kiyomizudera.jpg', caption: 'Kiyomizu-dera. April 2025.'},
             { url: 'onumakoen-8.jpg', caption: 'Onuma-koen, Hokkaido. Had to tiptoe on a rock. July 2025.'},
             { url: 'miyajima-5.jpg', caption: 'Itsukushima-jinja, Hiroshima. January 2026.'},
             { url: 'ajisai-kamakura.jpg', caption: 'Hydrangeas at Hase-dera in Kamakura. June 2025.' },
@@ -18,8 +22,17 @@
             { url: 'expo.jpg', caption: 'Osaka Kansai Expo. August 2025.'},
             { url: 'gunkanjima.jpg', caption: 'Gunkanjima, Nagasaki. May 2025.'},
             { url: 'kamogawa-delta.jpg', caption: 'Kamogawa Delta. July 2025.'},
-            { url: 'nijo-sakura.jpg', caption: 'Completely clueless phototaking. Nijo Castle. March 2025.'},
-            { url: 'sensoji.jpg', caption: 'Sensoji in Tokyo, not Fushimi Inari. May 2025.'},
+            { url: 'amanohashidate.jpg', caption: 'Amanohashidate. May 2026.'},
+            { url: 'okayama-6.jpg', caption: 'Lotus flower. Korakuen, Okayama City. June 2026.'},
+            { url: 'okayama-18.jpg', caption: 'Okayama Castle. June 2026.'},
+            { url: 'okayama-23.jpg', caption: 'Kurashiki Bikan Historical Quarter. June 2026.'},
+            { url: 'ryoanji_ninnaji-12.jpg', caption: 'Ninnaji Palace Garden. June 2026.'},
+            { url: 'kinosaki-3_edit.jpg', caption: 'Kinosaki Onsen, Hyogo. May 2026.'},
+            { url: 'byodo-in.jpg', caption: 'Byodo-in, Uji. May 2026.'},
+            { url: 'todaiji.jpg', caption: 'Todaiji, Nara. May 2026.'},
+            { url: 'kenrokuen.jpg', caption: 'Kenroku-en, Kanazawa. May 2026.'},
+            { url: 'kanazawa.jpg', caption: 'Tsuzumi-mon, Kanazawa Station. May 2026.'},
+            { url: 'matsumoto.jpg', caption: 'Matsumoto Castle. May 2026.'},
         ];
 
         // Pick the pre-selected photo from last visit, or pick randomly
@@ -43,7 +56,8 @@
             font-family: serif, "Noto Serif TC";
             max-width: 1600px;
             margin: 0 auto;
-            padding: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
             font-size: 20px;
         }
         .container {
@@ -120,22 +134,25 @@
     <div class="container">
         <div class="left-column">
             <h1>CHOO Ying Hua David</h1>
-            <p style="font-size: 12pt">CHOO Ying Hua 朱盈華 is my given name in Chinese.</p>
+            <p style="font-size: 12pt">CHOO Ying Hua 朱盈華 is my given name in Chinese</p>
             <p>&#12306;: <i>chooyh [dot] david [at] u [dot] nus [dot] edu</i></p>
 
             <figure class="photo-container">
                 <img id="dynamic-photo" src="" alt="Dynamic photo" loading="lazy">
                 <figcaption id="photo-caption">Loading...</figcaption>
-                <div class="photo-refresh"><i>[Refresh for a new photo]</i></div>
+                <!--<div class="photo-refresh"><i>[Refresh for a new photo]</i></div>-->
             </figure>
         </div>
         
         <div class="right-column">
-            <p class="intro">I am a M.A. student in the Department of Philosophy at the National University of Singapore, where I also did my B.A. in Philosophy, Politics, and Economics from 2022-26. My philosophical interests include epistemology, decision theory, logic, philosophy of mathematics, and philosophy of language.<br><br>
+            <p class="intro">I am an M.A. student in the Department of Philosophy at the National University of Singapore. I also did my B.A. in Philosophy, Politics, and Economics at the same university from 2022-26, with a thesis arguing against a proposal that invokes fragmentation and metalinguistic ignorance to resolve the problem of logical omniscience in Bayesian decision theory.<br><br>
+                
+            My philosophical interests include epistemology, decision theory, logic, philosophy of mathematics, and the philosophy of language. Currently, my research focuses on accuracy-based approaches to belief updating in formal epistemology.<br><br>
             
             Here is my <a href="cv.pdf">CV</a>.<br><br>
 
-            Outside of philosophy, I spend some of my free time learning how to use a camera, or <a href="#" onclick="randomLang(event)">brushing up</a> on my foreign languages.
+            Outside of philosophy, I spend some of my free time learning how to use a camera.
+            <!--or <a href="#" onclick="randomLang(event)">brushing up</a> on my foreign languages.-->
             </p>
             
             <details>
@@ -149,7 +166,7 @@
                 <p>Argues that the proposal by Elga and Rayo (2022) in <i>Fragmentation and Logical Omniscience</i> fails as a solution to the problem of logical omniscience in Bayesian decision theory. Fragmentation leaves too much underdetermined to give any verdicts on rationality, while the metalinguistic strategy misidentifies the source of agents' failures in cases like logical puzzles and mathematical computation.</p>
             </details>
 
-            <p><i>Last updated April 2026.</i></p>
+            <p><i>Last updated June 2026.</i></p>
         </div>
     </div>
     <script>
